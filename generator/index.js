@@ -6,21 +6,31 @@ const filesToDelete = [
 ]
 
 module.exports = (api, options) => {
+  // add normalize
   api.extendPackage({
     dependencies: {
-      'normalize.css': 'latest',
+      'normalize.css': '*',
     },
   })
   api.injectImports(api.entryFile, `import 'normalize.css'`)
+
+  // delete some files
   api.render((files) => {
     Object.keys(files)
       .filter((name) => filesToDelete.indexOf(name) > -1)
       .forEach((name) => delete files[name])
   })
+
+  // overwrite some files
   api.render('./template')
 }
 
 module.exports.hooks = (api) => {
+  // assert entryFile as main.ts
+  // https://github.com/vuejs/vue-cli/issues/3049
+  api.entryFile = 'src/main.ts'
+
+  // delint this one file to avoid a warning
   api.afterInvoke(() => {
     const fs = require('fs')
     const contentMain = fs.readFileSync(api.resolve(api.entryFile), {

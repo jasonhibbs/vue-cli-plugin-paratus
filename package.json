@@ -1,7 +1,7 @@
 {
   "name": "vue-cli-plugin-paratus",
-  "version": "0.0.0",
-  "description": "vue-cli plugin to do my usual prep it’s probably not for you",
+  "version": "0.0.1",
+  "description": "A vue-cli plugin to do my usual prep; it’s probably not for you",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jasonhibbs/vue-cli-plugin-paratus.git"
